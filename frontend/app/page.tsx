@@ -5,6 +5,8 @@ export default function Home() {
   const [fragment, setFragment] = useState("");
   const [response, setResponse] = useState("");
 
+  const API_BASE_URI = "/api";
+
   useEffect(() => {
     const fragment = window.location.hash.substring(1);
 
@@ -15,7 +17,7 @@ export default function Home() {
       setFragment(tokenPair.split("=")[1]);
     }
 
-    fetch(`https://plenty-paths-cry.loca.lt/?id_token=${fragment}`)
+    fetch(`${API_BASE_URI}/?${fragment}`)
       .then((res) => res.text())
       .then((data) => setResponse(data))
       .catch((error) => console.error("Error fetching data:", error));
